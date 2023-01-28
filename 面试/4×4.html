@@ -40,7 +40,7 @@
           var cell = document.createElement("div");
           cell.innerText = `(${r},${c})`;
           div.appendChild(cell);
-          // 方案1 闭包
+          // 方案1 闭包 变量内存
           //   cell.addEventListener(
           //     "click",
           //     ((e) => {
@@ -51,6 +51,17 @@
           //       };
           //     })()
           //   );
+          // 方案2 二维数组
+          cell.addEventListener(
+            "click",
+            ((r, c) => {
+              return function () {
+                console.log(r, c);
+                arr[r][c]++;
+                alert(`点击了${arr[r][c]}次`);
+              };
+            })(r, c)
+          );
         }
       }
       console.log(arr);
