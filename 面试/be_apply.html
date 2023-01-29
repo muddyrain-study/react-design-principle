@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      Function.prototype.apply = function (obj, args = []) {
+        obj.fn = this;
+        const res = obj.fn(...args);
+        delete obj.fn;
+        return res;
+      };
+      function jisuan(base, bonus1, bonus2) {
+        console.log(`${this.ename}的钱是${base + bonus1 + bonus2}`);
+      }
+      const mm = {
+        ename: "蒙蒙",
+      };
+      jisuan.apply(mm, [10000, 20000, 3000]);
+    </script>
+  </body>
+</html>
